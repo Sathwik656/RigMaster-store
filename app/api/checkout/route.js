@@ -3,7 +3,7 @@ import '../../../envConfig'
 
 const API_KEY = process.env.STRIPE_SECRET_KEY
 const stripe = new Stripe(API_KEY, {
-    apiVersion: '2023-10-16'
+    apiVersion: '2025-11-17'
 })
 
 export async function POST(request){
