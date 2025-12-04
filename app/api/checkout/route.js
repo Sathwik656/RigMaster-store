@@ -2,9 +2,7 @@ import Stripe from "stripe";
 import '../../../envConfig'
 
 const API_KEY = process.env.STRIPE_SECRET_KEY
-const stripe = new Stripe(API_KEY, {
-    apiVersion: "2025-11-17",
-})
+const stripe = new Stripe(API_KEY)
 
 export async function POST(request){
     try{
@@ -13,8 +11,8 @@ export async function POST(request){
         const session = await stripe.checkout.sessions.create({
             mode: 'payment',
             line_items: lineItems,
-            success_url: process.env.NEXT_PUBLIC_BASE_URL + '/success',
-            cancel_url: process.env.NEXT_PUBLIC_BASE_URL + '/'
+            success_url: process.env.BASE_URL + '/success',
+            cancel_url: process.env.BASE_URL + '/'
         })
         return Response.json(session)
     } catch (err){
